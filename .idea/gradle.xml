@@ -9,6 +9,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/bungeecord" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/nukkit" />
+            <option value="$PROJECT_DIR$/spigot" />
+            <option value="$PROJECT_DIR$/sponge" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />

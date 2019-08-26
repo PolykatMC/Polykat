@@ -17,11 +17,6 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-rootProject.name = 'minecraft'
-include 'core'
-include 'core'
-include 'spigot'
-include 'bungeecord'
-include 'sponge'
-include 'nukkit'
+dependencies {
 
+}
