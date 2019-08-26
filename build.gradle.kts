@@ -18,20 +18,52 @@
  */
 
 plugins {
+    checkstyle
+    pmd
+    id("com.github.spotbugs") version "1.7.1"
     java
 }
 
 group = "asia.devs-from.polykat"
 version = "1.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
-}
+subprojects {
+    apply(plugin = "pmd")
+    apply(plugin = "checkstyle")
+    apply(plugin = "com.github.spotbugs")
 
-dependencies {
-    testCompile("junit", "junit", "4.12")
-}
+    group = project.group
+    version = project.version
 
-configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_1_8
+    tasks {
+        checkstyle {
+            checkstyleTest.get().enabled = false
+            toolVersion = "8.19"
+        }
+
+        checkstyleMain {
+            configFile = file("$rootDir/config/checkstyle/google_checks.xml")
+            configProperties = mapOf("config_loc" to "${rootProject.projectDir}/config/checkstyle")
+        }
+
+        spotbugs {
+            toolVersion = "4.0.0-beta1"
+        }
+
+        spotbugsMain {
+            reports {
+                html.isEnabled = true
+                xml.isEnabled = false
+            }
+        }
+
+        pmd {
+            pmdTest.get().enabled = false
+        }
+
+        pmdMain {
+            ignoreFailures = true
+            ruleSetConfig = this@subprojects.resources.text.fromFile(file("${rootProject.projectDir}/config/pmd/ruleset.xml"))
+        }
+    }
 }
