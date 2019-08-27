@@ -1,0 +1,6 @@
+name: Polykat
+version: ${version}
+main: asia.devs_from.polykat.minecraft.nukkit.Polykat
+authors:
+  - Schlaubi
+  - ForYaSee

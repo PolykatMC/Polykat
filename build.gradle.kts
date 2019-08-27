@@ -42,6 +42,11 @@ subprojects {
     }
 
     tasks {
+
+        checkstyle {
+            checkstyleTest.get().enabled = false
+        }
+
         checkstyleMain {
             configFile = file("$rootDir/config/checkstyle/google_checks.xml")
             configProperties = mapOf("config_loc" to "${rootProject.projectDir}/config/checkstyle")
@@ -58,11 +63,16 @@ subprojects {
             }
         }
 
+        pmd {
+            pmdTest.get().enabled = false
+        }
+
         pmdMain {
             ignoreFailures = true
             ruleSetConfig = this@subprojects.resources.text.fromFile(file("${rootProject.projectDir}/config/pmd/ruleset.xml"))
         }
     }
+
     configure<JavaPluginConvention> {
         sourceCompatibility = JavaVersion.VERSION_1_8
     }
